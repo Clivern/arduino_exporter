@@ -1,3 +1,18 @@
+#!/bin/bash
+
+#
+# \       /
+#  \     /
+#   \.-./
+#  (o\^/o)  _   _   _     __
+#   ./ \.\ ( )-( )-( ) .-'  '-.
+#    {-} \(//  ||   \\/ (   )) '-.
+#         //-__||__.-\\.       .-'
+#        (/    ()     \)'-._.-'
+#        ||    ||      \\
+#        ('    ('       ')
+#
+
 sudo apt-get update
 sudo apt-get install apache2
 sudo apt-get install mysql-server php5-mysql
