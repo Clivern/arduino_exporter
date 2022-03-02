@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 0.5.2
+=============
+
+- Bug fixes.
+
 Version 0.5.1
 =============
 

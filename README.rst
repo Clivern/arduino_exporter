@@ -8,13 +8,13 @@
 |
 
 ================
-Arduino Exporter
+Arduino Prometheus Exporter
 ================
 
-    Arduino Prometheus Exporter
+    You can run this exporter on a device (PC or Raspberry PI) connected to an arduino. The exporter will listen to messages sent over the serial port and update the metrics exposed to prometheus. I used this project to visualize and trigger alerts for a lot of sensors values like sound, temperature and water level.
 
 
-To use the exporter, follow the following steps
+To use the exporter, follow the following steps:
 
 1. Create a python virtual environment.
 
@@ -31,7 +31,7 @@ To use the exporter, follow the following steps
     $ pip install arduino-exporter
 
 
-3. To run the arduino exporter process.
+3. To run the arduino exporter process. You can use systemd to run the process on PC or Raspberry PI. The serial port value can be retrieved from arduino IDE.
 
 .. code-block::
 
@@ -55,5 +55,5 @@ To use the exporter, follow the following steps
       delay(1000);
       digitalWrite(LED, LOW);
       delay(1000);
-      Serial.write("{\"type\": \"counter\", \"name\": \"app_orders\", \"help\": \"the amount of orders.\", \"method\": \"inc\", \"value\": 1, \"labels\": {\"type\": \"trousers\"}}");
+      Serial.write("{\"type\": \"gauge\", \"name\": \"room_temp\", \"help\": \"the room temperature.\", \"method\": \"set\", \"value\": 14.3, \"labels\": {\"place\": \"us\"}}");
     }

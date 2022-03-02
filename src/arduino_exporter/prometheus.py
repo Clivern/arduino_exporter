@@ -44,7 +44,7 @@ class Prometheus():
             data: The data has the following format
                 {
                     "type": "counter",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "method": "inc",
                     "value": 1,
@@ -90,7 +90,7 @@ class Prometheus():
             item: The metric data
                 {
                     "type": "counter",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "method": "inc",
                     "value": 1,
@@ -121,7 +121,7 @@ class Prometheus():
             item: The metric data
                 {
                     "type": "gauge",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "method": "inc", # inc or dec or set
                     "value": 1,
@@ -159,7 +159,7 @@ class Prometheus():
             item: The metric data
                 {
                     "type": "summary",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "method": "observe",
                     "value": 1,
@@ -191,7 +191,7 @@ class Prometheus():
             item: The metric data
                 {
                     "type": "histogram",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "method": "observe",
                     "value": 1,
@@ -222,7 +222,7 @@ class Prometheus():
             item: The metric data
                 {
                     "type": "info",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "value": {'version': '1.2.3', 'buildhost': 'foo@bar'}
                 }
@@ -248,7 +248,7 @@ class Prometheus():
             item: The metric data
                 {
                     "type": "enum",
-                    "name": "penguin_orders",
+                    "name": "app_orders",
                     "help": "the amount of orders.",
                     "states": ['starting', 'running', 'stopped'],
                     "state": 'starting'
