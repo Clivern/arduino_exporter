@@ -63,17 +63,23 @@ class Prometheus():
         except Exception:
             return
 
-        if item['type'] == 'counter':
+        if 'help' not in item.keys():
+            item['help'] = ''
+
+        if 'labels' not in item.keys():
+            item['labels'] = {}
+
+        if item['type'] == 'counter' or item['type'] == 'c':
             self.counter(item)
-        elif item['type'] == 'gauge':
+        elif item['type'] == 'gauge' or item['type'] == 'g':
             self.gauge(item)
-        elif item['type'] == 'summary':
+        elif item['type'] == 'summary' or item['type'] == 's':
             self.summary(item)
-        elif item['type'] == 'histogram':
+        elif item['type'] == 'histogram' or item['type'] == 'h':
             self.histogram(item)
-        elif item['type'] == 'info':
+        elif item['type'] == 'info' or item['type'] == 'i':
             self.info(item)
-        elif item['type'] == 'enum':
+        elif item['type'] == 'enum' or item['type'] == 'e':
             self.enum(item)
 
     def counter(self, item):
