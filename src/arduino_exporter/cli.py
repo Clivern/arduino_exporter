@@ -60,6 +60,13 @@ def parse_args(args):
     )
 
     parser.add_argument(
+        dest="serial_port",
+        help="The serial port to listen to",
+        type=str,
+        metavar="STR"
+    )
+
+    parser.add_argument(
         "--p",
         dest="port",
         help="The HTTP server port",

@@ -35,4 +35,5 @@ To use the exporter, follow the following steps
 
 .. code-block::
 
-    $ python -m arduino_exporter.cli --p 8000
+    $ python -m arduino_exporter.cli run $serial_port --p $http_port -vv >> /var/log/arduino_exporter.log
+    $ python -m arduino_exporter.cli run /dev/cu.usbmodem14101 --p 8000 -vv >> /var/log/arduino_exporter.log
