@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 0.3.0
+=============
+
+- Add HTTP Server.
+
 Version 0.2.0
 =============
 

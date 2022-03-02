@@ -26,6 +26,8 @@ import sys
 import time
 
 from arduino_exporter import __version__
+from arduino_exporter.serial import Serial
+from arduino_exporter.server import Server
 
 
 __author__ = "Clivern"
@@ -118,7 +120,10 @@ def main(args):
     _logger.info("Arduino exporter cli command {}".format(args.operation))
 
     if args.operation == "run":
-        _logger.info("Starting arduino exporter HTTP server")
+        _logger.info("Starting arduino exporter HTTP server on port {}".format(args.port))
+        server = Server(args.port)
+        server.add_callback(lambda: time.sleep(1))
+        server.run()
 
     else:
         raise Exception("Invalid opertaion name {}".format(args.operation))
