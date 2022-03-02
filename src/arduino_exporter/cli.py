@@ -28,6 +28,7 @@ import time
 from arduino_exporter import __version__
 from arduino_exporter.serial import Serial
 from arduino_exporter.server import Server
+from arduino_exporter.prometheus import Prometheus
 
 
 __author__ = "Clivern"
@@ -122,7 +123,11 @@ def main(args):
     if args.operation == "run":
         _logger.info("Starting arduino exporter HTTP server on port {}".format(args.port))
         server = Server(args.port)
+        prometheus = Prometheus()
+
         server.add_callback(lambda: time.sleep(1))
+        server.add_callback(lambda: prometheus.store('{"type": "counter", "name": "app_orders", "help": "the amount of orders.", "method": "inc", "value": 1, "labels": {"type": "trousers"}}'))
+
         server.run()
 
     else:

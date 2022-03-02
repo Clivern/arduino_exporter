@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 0.4.0
+=============
+
+- Add Prometheus Exporter.
+
 Version 0.3.0
 =============
 

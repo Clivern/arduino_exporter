@@ -43,6 +43,15 @@ class Serial(object):
 		if line:
 			return line.decode()
 
+	def write(self, message):
+		"""
+		Write into serial port
+
+		Args:
+			message: The message to send
+		"""
+		self._serial.write(bytes(message, 'utf-8'))
+
 	def close(self):
 		"""
 		Close the serial port
