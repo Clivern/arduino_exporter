@@ -7,11 +7,12 @@
 
 |
 
-================
+===========================
 Arduino Prometheus Exporter
-================
+===========================
 
-    You can run this exporter on a device (PC or Raspberry PI) connected to an arduino. The exporter will listen to messages sent over the serial port and update the metrics exposed to prometheus. I used this project to visualize and trigger alerts for a lot of sensors values like sound, temperature and water level.
+    You can run this exporter on a device (PC or Raspberry PI) connected to an arduino. The exporter will listen to messages sent over the serial port and update the metrics exposed to prometheus.
+    I used this project to visualize and trigger alerts for a lot of sensors values like sound, temperature and water level.
 
 
 To use the exporter, follow the following steps:
