@@ -124,10 +124,10 @@ def main(args):
         _logger.info("Starting arduino exporter HTTP server on port {}".format(args.port))
         server = Server(args.port)
         prometheus = Prometheus()
+        serial = Serial(args.serial_port)
 
         server.add_callback(lambda: time.sleep(1))
-        server.add_callback(lambda: prometheus.store('{"type": "counter", "name": "app_orders", "help": "the amount of orders.", "method": "inc", "value": 1, "labels": {"type": "trousers"}}'))
-
+        server.add_callback(lambda: prometheus.store(serial.read()))
         server.run()
 
     else:

@@ -23,7 +23,7 @@
 import serial
 
 
-class Serial(object):
+class Serial():
     """Serial Class"""
 
     def __init__(self, serial_port):

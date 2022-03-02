@@ -37,3 +37,23 @@ To use the exporter, follow the following steps
 
     $ python -m arduino_exporter.cli run $serial_port --p $http_port -vv >> /var/log/arduino_exporter.log
     $ python -m arduino_exporter.cli run /dev/cu.usbmodem14101 --p 8000 -vv >> /var/log/arduino_exporter.log
+
+
+4. Upload a sketch to the arduino to send the metrics to the serial port.
+
+.. code-block::
+
+    #define LED 13
+
+    void setup() {
+      Serial.begin(9600);
+      pinMode(LED, OUTPUT);
+    }
+
+    void loop() {
+      digitalWrite(LED, HIGH);
+      delay(1000);
+      digitalWrite(LED, LOW);
+      delay(1000);
+      Serial.write("{\"type\": \"counter\", \"name\": \"app_orders\", \"help\": \"the amount of orders.\", \"method\": \"inc\", \"value\": 1, \"labels\": {\"type\": \"trousers\"}}");
+    }

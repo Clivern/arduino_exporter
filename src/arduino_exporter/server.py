@@ -23,7 +23,7 @@
 from prometheus_client import start_http_server
 
 
-class Server(object):
+class Server():
     """Server Class"""
 
     def __init__(self, http_port):

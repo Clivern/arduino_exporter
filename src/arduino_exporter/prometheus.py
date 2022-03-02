@@ -28,10 +28,9 @@ from prometheus_client import Summary
 from prometheus_client import Histogram
 from prometheus_client import Info
 from prometheus_client import Enum
-from prometheus_client.registry import REGISTRY
 
 
-class Prometheus(object):
+class Prometheus():
     """Prometheus Class"""
 
     def __init__(self):
@@ -54,7 +53,15 @@ class Prometheus(object):
                     }
                 }
         """
-        item = json.loads(data)
+
+        if data is None:
+            return
+
+        # Avoid any bad input
+        try:
+            item = json.loads(data.strip())
+        except Exception:
+            return
 
         if item['type'] == 'counter':
             self.counter(item)

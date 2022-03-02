@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 0.5.0
+=============
+
+- Initial stable release.
+
 Version 0.4.1
 =============
 
