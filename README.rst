@@ -14,7 +14,6 @@ Arduino Exporter
     Arduino Prometheus Exporter
 
 
-
 To use the exporter, follow the following steps
 
 1. Create a python virtual environment.
@@ -25,14 +24,14 @@ To use the exporter, follow the following steps
     $ source venv/bin/activate
 
 
-2. Install arduino_exporter package with pip.
+2. Install arduino-exporter package with pip.
 
 .. code-block::
 
-    $ pip install arduino_exporter
+    $ pip install arduino-exporter
 
 
-3. To run the exporter process.
+3. To run the arduino exporter process.
 
 .. code-block::
 
