@@ -24,33 +24,33 @@ from prometheus_client import start_http_server
 
 
 class Server(object):
-	"""Server Class"""
+    """Server Class"""
 
-	def __init__(self, http_port):
-		"""
-		Class Constructor
+    def __init__(self, http_port):
+        """
+        Class Constructor
 
-		Args:
-			http_port: The HTTP port
-		"""
-		self._callback = []
-		self._http_port = http_port
+        Args:
+            http_port: The HTTP port
+        """
+        self._callback = []
+        self._http_port = http_port
 
-	def add_callback(self, callback):
-		"""
-		Add a Callback
+    def add_callback(self, callback):
+        """
+        Add a Callback
 
-		Args:
-			callback: The callback
-		"""
-		self._callback.append(callback)
+        Args:
+            callback: The callback
+        """
+        self._callback.append(callback)
 
-	def run(self):
-		"""
-		Run the server
-		"""
-		start_http_server(self._http_port)
+    def run(self):
+        """
+        Run the server
+        """
+        start_http_server(self._http_port)
 
-		while True:
-			for x in range(len(self._callback)):
-				self._callback[x]()
+        while True:
+            for x in range(len(self._callback)):
+                self._callback[x]()

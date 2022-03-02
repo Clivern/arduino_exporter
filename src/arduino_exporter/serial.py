@@ -24,36 +24,36 @@ import serial
 
 
 class Serial(object):
-	"""Serial Class"""
+    """Serial Class"""
 
-	def __init__(self, serial_port):
-		self._serial_port = serial_port
-		self._serial = serial.Serial(self._serial_port, 9800, timeout=1)
+    def __init__(self, serial_port):
+        self._serial_port = serial_port
+        self._serial = serial.Serial(self._serial_port, 9800, timeout=1)
 
-	def read(self):
-		"""
-		Read a line from a serial port
+    def read(self):
+        """
+        Read a line from a serial port
 
-		Returns:
-			The string value
-		"""
+        Returns:
+            The string value
+        """
 
-		line = self._serial.readline()
+        line = self._serial.readline()
 
-		if line:
-			return line.decode()
+        if line:
+            return line.decode()
 
-	def write(self, message):
-		"""
-		Write into serial port
+    def write(self, message):
+        """
+        Write into serial port
 
-		Args:
-			message: The message to send
-		"""
-		self._serial.write(bytes(message, 'utf-8'))
+        Args:
+            message: The message to send
+        """
+        self._serial.write(bytes(message, 'utf-8'))
 
-	def close(self):
-		"""
-		Close the serial port
-		"""
-		self._serial.close()
+    def close(self):
+        """
+        Close the serial port
+        """
+        self._serial.close()

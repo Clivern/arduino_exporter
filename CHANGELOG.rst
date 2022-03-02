@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 0.4.1
+=============
+
+- Code style adjustments.
+
 Version 0.4.0
 =============
 

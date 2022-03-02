@@ -32,224 +32,224 @@ from prometheus_client.registry import REGISTRY
 
 
 class Prometheus(object):
-	"""Prometheus Class"""
+    """Prometheus Class"""
 
-	def __init__(self):
-		self.metrics = {}
+    def __init__(self):
+        self.metrics = {}
 
-	def store(self, data):
-		"""
-		Expose a data object
+    def store(self, data):
+        """
+        Expose a data object
 
-		Args:
-			data: The data has the following format
-				{
-					"type": "counter",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"method": "inc",
-					"value": 1,
-					"labels": {
-						"type": "trousers"
-					}
-				}
-		"""
-		item = json.loads(data)
+        Args:
+            data: The data has the following format
+                {
+                    "type": "counter",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "method": "inc",
+                    "value": 1,
+                    "labels": {
+                        "type": "trousers"
+                    }
+                }
+        """
+        item = json.loads(data)
 
-		if item['type'] == 'counter':
-			self.counter(item)
-		elif item['type'] == 'gauge':
-			self.gauge(item)
-		elif item['type'] == 'summary':
-			self.summary(item)
-		elif item['type'] == 'histogram':
-			self.histogram(item)
-		elif item['type'] == 'info':
-			self.info(item)
-		elif item['type'] == 'enum':
-			self.enum(item)
+        if item['type'] == 'counter':
+            self.counter(item)
+        elif item['type'] == 'gauge':
+            self.gauge(item)
+        elif item['type'] == 'summary':
+            self.summary(item)
+        elif item['type'] == 'histogram':
+            self.histogram(item)
+        elif item['type'] == 'info':
+            self.info(item)
+        elif item['type'] == 'enum':
+            self.enum(item)
 
-	def counter(self, item):
-		"""
-		Prometheus Counter
+    def counter(self, item):
+        """
+        Prometheus Counter
 
-		Args:
-			item: The metric data
-				{
-					"type": "counter",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"method": "inc",
-					"value": 1,
-					"labels": {
-						"type": "trousers"
-					}
-				}
-		"""
-		c = None
+        Args:
+            item: The metric data
+                {
+                    "type": "counter",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "method": "inc",
+                    "value": 1,
+                    "labels": {
+                        "type": "trousers"
+                    }
+                }
+        """
+        c = None
 
-		for name, metric in self.metrics.items():
-			if name == item['name']:
-				c = metric
+        for name, metric in self.metrics.items():
+            if name == item['name']:
+                c = metric
 
-		if c is None:
-			c = Counter(item['name'], item['help'], item['labels'].keys())
-			c = c.labels(*item['labels'].values())
+        if c is None:
+            c = Counter(item['name'], item['help'], item['labels'].keys())
+            c = c.labels(*item['labels'].values())
 
-		c.inc(item['value'])
-		self.metrics[item['name']] = c
-		return c
+        c.inc(item['value'])
+        self.metrics[item['name']] = c
+        return c
 
-	def gauge(self, item):
-		"""
-		Prometheus Gauge
+    def gauge(self, item):
+        """
+        Prometheus Gauge
 
-		Args:
-			item: The metric data
-				{
-					"type": "gauge",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"method": "inc", # inc or dec or set
-					"value": 1,
-					"labels": {
-						"type": "trousers"
-					}
-				}
-		"""
-		g = None
+        Args:
+            item: The metric data
+                {
+                    "type": "gauge",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "method": "inc", # inc or dec or set
+                    "value": 1,
+                    "labels": {
+                        "type": "trousers"
+                    }
+                }
+        """
+        g = None
 
-		for name, metric in self.metrics.items():
-			if name == item['name']:
-				g = metric
+        for name, metric in self.metrics.items():
+            if name == item['name']:
+                g = metric
 
-		if g is None:
-			g = Gauge(item['name'], item['help'], item['labels'].keys())
-			g = g.labels(*item['labels'].values())
+        if g is None:
+            g = Gauge(item['name'], item['help'], item['labels'].keys())
+            g = g.labels(*item['labels'].values())
 
-		if item['method'] == 'inc':
-			g.inc(item['value'])
-		elif item['method'] == 'dec':
-			g.dec(item['value'])
-		elif item['method'] == 'set':
-			g.set(item['value'])
+        if item['method'] == 'inc':
+            g.inc(item['value'])
+        elif item['method'] == 'dec':
+            g.dec(item['value'])
+        elif item['method'] == 'set':
+            g.set(item['value'])
 
-		self.metrics[item['name']] = g
+        self.metrics[item['name']] = g
 
-		return g
+        return g
 
-	def summary(self, item):
-		"""
-		Prometheus Summary
+    def summary(self, item):
+        """
+        Prometheus Summary
 
-		Args:
-			item: The metric data
-				{
-					"type": "summary",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"method": "observe",
-					"value": 1,
-					"labels": {
-						"type": "trousers"
-					}
-				}
-		"""
-		s = None
+        Args:
+            item: The metric data
+                {
+                    "type": "summary",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "method": "observe",
+                    "value": 1,
+                    "labels": {
+                        "type": "trousers"
+                    }
+                }
+        """
+        s = None
 
-		for name, metric in self.metrics.items():
-			if name == item['name']:
-				s = metric
+        for name, metric in self.metrics.items():
+            if name == item['name']:
+                s = metric
 
 
-		if s is None:
-			s = Summary(item['name'], item['help'], item['labels'].keys())
-			s = s.labels(*item['labels'].values())
+        if s is None:
+            s = Summary(item['name'], item['help'], item['labels'].keys())
+            s = s.labels(*item['labels'].values())
 
-		s.observe(item['value'])
-		self.metrics[item['name']] = s
-		return s
+        s.observe(item['value'])
+        self.metrics[item['name']] = s
+        return s
 
-	def histogram(self, item):
-		"""
-		Prometheus Histogram
+    def histogram(self, item):
+        """
+        Prometheus Histogram
 
-		Args:
-			item: The metric data
-				{
-					"type": "histogram",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"method": "observe",
-					"value": 1,
-					"labels": {
-						"type": "trousers"
-					}
-				}
-		"""
-		h = None
+        Args:
+            item: The metric data
+                {
+                    "type": "histogram",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "method": "observe",
+                    "value": 1,
+                    "labels": {
+                        "type": "trousers"
+                    }
+                }
+        """
+        h = None
 
-		for name, metric in self.metrics.items():
-			if name == item['name']:
-				h = metric
+        for name, metric in self.metrics.items():
+            if name == item['name']:
+                h = metric
 
-		if h is None:
-			h = Histogram(item['name'], item['help'], item['labels'].keys())
-			h = h.labels(*item['labels'].values())
+        if h is None:
+            h = Histogram(item['name'], item['help'], item['labels'].keys())
+            h = h.labels(*item['labels'].values())
 
-		h.observe(item['value'])
-		self.metrics[item['name']] = h
-		return h
+        h.observe(item['value'])
+        self.metrics[item['name']] = h
+        return h
 
-	def info(self, item):
-		"""
-		Prometheus Info
+    def info(self, item):
+        """
+        Prometheus Info
 
-		Args:
-			item: The metric data
-				{
-					"type": "info",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"value": {'version': '1.2.3', 'buildhost': 'foo@bar'}
-				}
-		"""
-		i = None
+        Args:
+            item: The metric data
+                {
+                    "type": "info",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "value": {'version': '1.2.3', 'buildhost': 'foo@bar'}
+                }
+        """
+        i = None
 
-		for name, metric in self.metrics.items():
-			if name == item['name']:
-				i = metric
+        for name, metric in self.metrics.items():
+            if name == item['name']:
+                i = metric
 
-		if i is None:
-			i = Info(item['name'], item['help'])
+        if i is None:
+            i = Info(item['name'], item['help'])
 
-		i.info(item['value'])
-		self.metrics[item['name']] = i
-		return i
+        i.info(item['value'])
+        self.metrics[item['name']] = i
+        return i
 
-	def enum(self, item):
-		"""
-		Prometheus Enum
+    def enum(self, item):
+        """
+        Prometheus Enum
 
-		Args:
-			item: The metric data
-				{
-					"type": "enum",
-					"name": "penguin_orders",
-					"help": "the amount of orders.",
-					"states": ['starting', 'running', 'stopped'],
-					"state": 'starting'
-				}
-		"""
-		e = None
+        Args:
+            item: The metric data
+                {
+                    "type": "enum",
+                    "name": "penguin_orders",
+                    "help": "the amount of orders.",
+                    "states": ['starting', 'running', 'stopped'],
+                    "state": 'starting'
+                }
+        """
+        e = None
 
-		for name, metric in self.metrics.items():
-			if name == item['name']:
-				e = metric
+        for name, metric in self.metrics.items():
+            if name == item['name']:
+                e = metric
 
-		if e is None:
-			e = Enum(item['name'], item['help'], states=item['states'])
+        if e is None:
+            e = Enum(item['name'], item['help'], states=item['states'])
 
-		e.state(item['state'])
-		self.metrics[item['name']] = e
-		return e
+        e.state(item['state'])
+        self.metrics[item['name']] = e
+        return e
