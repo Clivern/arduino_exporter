@@ -35,8 +35,8 @@ To use the exporter, follow the following steps:
 
 .. code-block::
 
-    $ python -m arduino_exporter.cli run $serial_port --p $http_port -vv >> /var/log/arduino_exporter.log
-    $ python -m arduino_exporter.cli run /dev/cu.usbmodem14101 --p 8000 -vv >> /var/log/arduino_exporter.log
+    $ arduino_exporter server run -s $serial_port --p $http_port
+    $ arduino_exporter server run -s /dev/cu.usbmodem14101 --p 8000
 
 
 4. Upload a sketch to the arduino to send the metrics to the serial port.

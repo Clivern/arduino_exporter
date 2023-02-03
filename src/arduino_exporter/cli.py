@@ -50,7 +50,7 @@ def server():
     type=click.STRING,
     default="",
     required=True,
-    help="The serial port to listen to",
+    help="The Serial port to listen to",
 )
 @click.option(
     "-p",
