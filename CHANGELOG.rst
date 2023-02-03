@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 0.6.0
+=============
+
+- Update cli into click
+
 Version 0.5.2
 =============
 

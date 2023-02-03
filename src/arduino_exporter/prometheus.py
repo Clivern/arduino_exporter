@@ -30,7 +30,7 @@ from prometheus_client import Info
 from prometheus_client import Enum
 
 
-class Prometheus():
+class Prometheus:
     """Prometheus Class"""
 
     def __init__(self):
@@ -63,23 +63,23 @@ class Prometheus():
         except Exception:
             return
 
-        if 'help' not in item.keys():
-            item['help'] = ''
+        if "help" not in item.keys():
+            item["help"] = ""
 
-        if 'labels' not in item.keys():
-            item['labels'] = {}
+        if "labels" not in item.keys():
+            item["labels"] = {}
 
-        if item['type'] == 'counter' or item['type'] == 'c':
+        if item["type"] == "counter" or item["type"] == "c":
             self.counter(item)
-        elif item['type'] == 'gauge' or item['type'] == 'g':
+        elif item["type"] == "gauge" or item["type"] == "g":
             self.gauge(item)
-        elif item['type'] == 'summary' or item['type'] == 's':
+        elif item["type"] == "summary" or item["type"] == "s":
             self.summary(item)
-        elif item['type'] == 'histogram' or item['type'] == 'h':
+        elif item["type"] == "histogram" or item["type"] == "h":
             self.histogram(item)
-        elif item['type'] == 'info' or item['type'] == 'i':
+        elif item["type"] == "info" or item["type"] == "i":
             self.info(item)
-        elif item['type'] == 'enum' or item['type'] == 'e':
+        elif item["type"] == "enum" or item["type"] == "e":
             self.enum(item)
 
     def counter(self, item):
@@ -102,15 +102,15 @@ class Prometheus():
         c = None
 
         for name, metric in self.metrics.items():
-            if name == item['name']:
+            if name == item["name"]:
                 c = metric
 
         if c is None:
-            c = Counter(item['name'], item['help'], item['labels'].keys())
-            c = c.labels(*item['labels'].values())
+            c = Counter(item["name"], item["help"], item["labels"].keys())
+            c = c.labels(*item["labels"].values())
 
-        c.inc(item['value'])
-        self.metrics[item['name']] = c
+        c.inc(item["value"])
+        self.metrics[item["name"]] = c
         return c
 
     def gauge(self, item):
@@ -133,21 +133,21 @@ class Prometheus():
         g = None
 
         for name, metric in self.metrics.items():
-            if name == item['name']:
+            if name == item["name"]:
                 g = metric
 
         if g is None:
-            g = Gauge(item['name'], item['help'], item['labels'].keys())
-            g = g.labels(*item['labels'].values())
+            g = Gauge(item["name"], item["help"], item["labels"].keys())
+            g = g.labels(*item["labels"].values())
 
-        if item['method'] == 'inc':
-            g.inc(item['value'])
-        elif item['method'] == 'dec':
-            g.dec(item['value'])
-        elif item['method'] == 'set':
-            g.set(item['value'])
+        if item["method"] == "inc":
+            g.inc(item["value"])
+        elif item["method"] == "dec":
+            g.dec(item["value"])
+        elif item["method"] == "set":
+            g.set(item["value"])
 
-        self.metrics[item['name']] = g
+        self.metrics[item["name"]] = g
 
         return g
 
@@ -171,16 +171,15 @@ class Prometheus():
         s = None
 
         for name, metric in self.metrics.items():
-            if name == item['name']:
+            if name == item["name"]:
                 s = metric
 
-
         if s is None:
-            s = Summary(item['name'], item['help'], item['labels'].keys())
-            s = s.labels(*item['labels'].values())
+            s = Summary(item["name"], item["help"], item["labels"].keys())
+            s = s.labels(*item["labels"].values())
 
-        s.observe(item['value'])
-        self.metrics[item['name']] = s
+        s.observe(item["value"])
+        self.metrics[item["name"]] = s
         return s
 
     def histogram(self, item):
@@ -203,15 +202,15 @@ class Prometheus():
         h = None
 
         for name, metric in self.metrics.items():
-            if name == item['name']:
+            if name == item["name"]:
                 h = metric
 
         if h is None:
-            h = Histogram(item['name'], item['help'], item['labels'].keys())
-            h = h.labels(*item['labels'].values())
+            h = Histogram(item["name"], item["help"], item["labels"].keys())
+            h = h.labels(*item["labels"].values())
 
-        h.observe(item['value'])
-        self.metrics[item['name']] = h
+        h.observe(item["value"])
+        self.metrics[item["name"]] = h
         return h
 
     def info(self, item):
@@ -230,14 +229,14 @@ class Prometheus():
         i = None
 
         for name, metric in self.metrics.items():
-            if name == item['name']:
+            if name == item["name"]:
                 i = metric
 
         if i is None:
-            i = Info(item['name'], item['help'])
+            i = Info(item["name"], item["help"])
 
-        i.info(item['value'])
-        self.metrics[item['name']] = i
+        i.info(item["value"])
+        self.metrics[item["name"]] = i
         return i
 
     def enum(self, item):
@@ -257,12 +256,12 @@ class Prometheus():
         e = None
 
         for name, metric in self.metrics.items():
-            if name == item['name']:
+            if name == item["name"]:
                 e = metric
 
         if e is None:
-            e = Enum(item['name'], item['help'], states=item['states'])
+            e = Enum(item["name"], item["help"], states=item["states"])
 
-        e.state(item['state'])
-        self.metrics[item['name']] = e
+        e.state(item["state"])
+        self.metrics[item["name"]] = e
         return e

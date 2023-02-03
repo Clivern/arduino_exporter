@@ -23,7 +23,7 @@
 import serial
 
 
-class Serial():
+class Serial:
     """Serial Class"""
 
     def __init__(self, serial_port):
@@ -50,7 +50,7 @@ class Serial():
         Args:
             message: The message to send
         """
-        self._serial.write(bytes(message, 'utf-8'))
+        self._serial.write(bytes(message, "utf-8"))
 
     def close(self):
         """

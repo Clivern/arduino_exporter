@@ -48,7 +48,7 @@ version:
 
 ## release: Release to PyPi
 release:
-	$(PYTHON) -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+	$(PYTHON) -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*  --verbose
 
 
 ## install: Install the package locally
