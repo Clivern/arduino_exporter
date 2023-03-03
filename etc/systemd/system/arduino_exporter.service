@@ -1,0 +1,14 @@
+[Unit]
+Description=Arduino Prometheus Exporter
+After=multi-user.target
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/local/bin/arduino_exporter server run -s /dev/cu.usbmodem14101 -p 8001
+
+[Install]
+WantedBy=multi-user.target
+
