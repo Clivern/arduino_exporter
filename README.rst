@@ -35,8 +35,8 @@ To use the exporter, follow the following steps:
 
 .. code-block::
 
-    $ arduino_exporter server run -s $serial_port --p $http_port
-    $ arduino_exporter server run -s /dev/cu.usbmodem14101 --p 8000
+    $ arduino_exporter server run -s $serial_port -p $http_port
+    $ arduino_exporter server run -s /dev/cu.usbmodem14101 -p 8000
 
 
 4. Upload a sketch to the arduino to send the metrics to the serial port.
