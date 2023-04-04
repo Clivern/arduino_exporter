@@ -62,6 +62,7 @@ def server():
 )
 def run(serial, port):
     try:
+        print(f"Starting server on port {port}")
         server = Server(int(port))
         prometheus = Prometheus()
         serial = Serial(serial)

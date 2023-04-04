@@ -61,7 +61,11 @@ class Prometheus:
         try:
             item = json.loads(data.strip())
         except Exception:
+            print(f"Invalid data received {data}")
             return
+
+        typ = item["type"]
+        print(f"New metric received with type {typ}")
 
         if "help" not in item.keys():
             item["help"] = ""
