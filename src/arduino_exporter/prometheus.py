@@ -64,8 +64,13 @@ class Prometheus:
             print(f"Invalid data received {data}")
             return
 
+        value = "---"
         typ = item["type"]
-        print(f"New metric received with type {typ}")
+
+        if "value" in item.keys():
+            value = item["value"]
+
+        print(f"New metric received with type {typ} with value {value}")
 
         if "help" not in item.keys():
             item["help"] = ""
