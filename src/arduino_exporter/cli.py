@@ -60,12 +60,20 @@ def server():
     default=8000,
     help="The HTTP server port",
 )
-def run(serial, port):
+@click.option(
+    "-b",
+    "--baud",
+    "baud",
+    type=click.INT,
+    default=9600,
+    help="The Serial communication baud rate",
+)
+def run(serial, baud, port):
     try:
         print(f"Starting server on port {port}")
         server = Server(int(port))
         prometheus = Prometheus()
-        serial = Serial(serial)
+        serial = Serial(serial, baud)
 
         server.add_callback(lambda: time.sleep(1))
         server.add_callback(lambda: prometheus.store(serial.read()))
