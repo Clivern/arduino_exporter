@@ -26,9 +26,9 @@ import serial
 class Serial:
     """Serial Class"""
 
-    def __init__(self, serial_port):
+    def __init__(self, serial_port, baud_rate):
         self._serial_port = serial_port
-        self._serial = serial.Serial(self._serial_port, 9800, timeout=1)
+        self._serial = serial.Serial(self._serial_port, baud_rate, timeout=1)
 
     def read(self):
         """
